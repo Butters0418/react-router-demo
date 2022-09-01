@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link,useNavigate, Outlet } from 'react-router-dom';
 import FaQ from './components/FaQ.js';
 import './App.css';
 
@@ -19,6 +19,7 @@ function Home() {
 }
 
 function About() {
+  let navigate = useNavigate();
   return (
     <>
       <main>
@@ -27,6 +28,7 @@ function About() {
       </main>
       <nav>
         <Link to='/'>Home</Link>
+        <button onClick={(e)=> navigate('/')}>Home</button>
       </nav>
     </>
   );
@@ -38,6 +40,18 @@ function NotFound() {
       <h2>網址錯誤</h2>
       <Link to='/'>回首頁</Link>
     </>
+  );
+}
+
+function Layout() {
+  return (
+    <div>
+      <div className='header'></div>
+      <main>
+        <Outlet />
+      </main>
+      <div className='footer'></div>
+    </div>
   );
 }
 
